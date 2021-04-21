@@ -17,17 +17,21 @@
                         <div class="input-field col s2">
                             <a href="pabellones.php" class="waves-effect waves-light btn">Nuevo</a>
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <input type="date" id="fecha" name="fecha" class="validate" required>
                             <label for="fecha">Fecha:</label>
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <input type="time" id="hora" name="hora" class="validate" required>
                             <label for="hora">Hora:</label>
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <input type="text" id="precio" name="precio" class="validate" required>
                             <label for="precio">Precio:</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="number" id="participantes" name="participantes" class="validate" min=1 required>
+                            <label for="participantes">Participantes:</label>
                         </div>
                         <div class="input-field col s12"> 
                             <p class="col s12">

@@ -18,7 +18,7 @@
             session_start();
             $_SESSION["usuario"]=$_POST["email"];
             $_SESSION["id"]=$id_usuario;
-            header("location:../vista/zonaprivada.php");
+            header("location:../vista/pachangas.php");
         } else {
             setcookie("error", "Contraseña incorrecta.", time() + (60*60*24*90), "/");
             header("location:../vista/login.php");

@@ -12,7 +12,7 @@
             $consulta=$this->db->query("select * from pabellones where id_creador = '" . $_SESSION["id"] . "'");
             if($consulta->rowCount() > 0) {
                 while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $filas["id_pabellon"] . "'>" . $filas["nombre"] . ". " . $filas["localidad"] . "</option>";
+                    echo "<option value='" . $filas["id_pabellon"] . "'>" . $filas["nombre_pab"] . ". " . $filas["localidad"] . "</option>";
                 }
             }
             

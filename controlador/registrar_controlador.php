@@ -13,7 +13,7 @@
         $usuario->set_registro();
         session_start();
         $_SESSION["usuario"]=$_POST["email"];
-        header("location:../vista/zonaprivada.php");
+        header("location:../vista/pachangas.php");
     } else {
         setcookie("existe", "El usuario ya está registrado.", time() + (60*60*24*90), "/");
         header("location:../vista/registro.php");

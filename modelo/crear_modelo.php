@@ -16,11 +16,12 @@
             $precio=htmlentities(addslashes($_POST["precio"]));
             $codigo=htmlentities(addslashes($_POST["visibilidad"]));
             $id=htmlentities(addslashes($_POST["id_creador"]));
+            $participantes=htmlentities(addslashes($_POST["participantes"]));
             
-            $sql="insert into pachangas (fecha, hora, id_pabellon, precio, codigo_pachanga, id_creador) values ('" . $fecha . "','" . $hora . "','" . $pabellon . "','" . 
-            $precio . "','" . $codigo . "','" . $id . "');";
+            $sql="insert into pachangas (fecha, hora, id_pabellon, precio, codigo_pachanga, id_creador, participantes) values ('" . $fecha . "','" . $hora . "','" . $pabellon . "','" . 
+            $precio . "','" . $codigo . "','" . $id . "','" . $participantes . "');";
             $consulta=$this->db->query($sql);
-            header("location:../vista/zonaprivada.php");
+            header("location:../vista/pachangas.php");
             //return $consulta;
         }
     }

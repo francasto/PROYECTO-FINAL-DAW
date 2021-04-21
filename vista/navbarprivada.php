@@ -3,13 +3,13 @@
         <div class="nav-wrapper ">
             <div class="container row black-text">
                 <div class="col s4">
-                <a href="zonaprivada.php" class="left brand-logo"><img src="../img/logoinicio.png" alt="logotipomarca" class="responsive-img"></a>
+                <a href="pachangas.php" class="left brand-logo"><img src="../img/logoinicio.png" alt="logotipomarca" class="responsive-img"></a>
                 <a href="#" data-target="menu-responsive" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
                 </div>                
                 <ul class="right hide-on-med-and-down col s8">
-                    <li><a href="zonaprivada.php" class="waves-effect waves-light white-text">Pachangas en curso</a></li>
+                    <li><a href="pachangas.php" class="waves-effect waves-light white-text">Pachangas en curso</a></li>
                     <li><a href="buscar.php" class="waves-effect waves-light">Buscar pachangas</a></li>
                     <li><a href="crear.php" class="waves-effect waves-light">Crear pachangas</a></li>
                     <li><a href="historial.php" class="waves-effect waves-light">Historial</a></li>
@@ -33,7 +33,7 @@
         <br>
     </div></li>
     <div class="container center">
-        <li><a href="zonaprivada.php" class="waves-effect waves-light">PACHANGAS EN CURSO</a></li>
+        <li><a href="pachangas.php" class="waves-effect waves-light">PACHANGAS EN CURSO</a></li>
         <li><a href="buscar.php" class="waves-effect waves-light">BUSCAR PACHANGAS</a></li>
         <li><a href="crear.php" class="waves-effect waves-light ">CREAR PACHANGAS</a></li>
         <li><a href="historial.php" class="waves-effect waves-light">HISTORIAL</a></li>
