@@ -12,6 +12,7 @@
         </div>
         <div class="section container">
             <div class="row"> 
+                <?php require_once("../modelo/pachangas_modelo.php"); ?>
                 <?php require_once("../controlador/pachangas_controlador.php"); ?>
             </div>
             <div class="row center-align">
