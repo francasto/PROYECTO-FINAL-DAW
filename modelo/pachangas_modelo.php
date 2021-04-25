@@ -15,8 +15,8 @@
         }
 
         public function get_pachangas() {
-            $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario 
-            INNER JOIN pachangas p ON par.id_pachanga = p.id_pachanga 
+            $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE j.id_usuario = " . $_SESSION["id"]);
             if($consulta->rowCount() > 0) {
@@ -36,7 +36,7 @@
                     if($filas["id_creador"] == $_SESSION["id"]) {  
                         echo "<div>Lista de jugadores: </div><p class='col s6'>";
                         $this->listado_jugadores($filas["id_pachanga"]);
-                        echo "</p><br><br>
+                        echo "<br></p>
                         <a href='#' class='btn green black-text waves-effect waves-block waves-light'>Cerrar convocatoria</a><br>
                         <a href='#' class='btn yellow black-text waves-effect waves-block waves-light'>Modificar pachanga</a><br>
                         <a href='#' class='btn red white-text waves-effect waves-block waves-light'>Cancelar pachanga</a>";
@@ -61,9 +61,9 @@
 
         public function listado_jugadores($pach) {
             $cont = 1;            
-            $consulta=$this->db->query("SELECT DISTINCT nombre FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario 
-            INNER JOIN pachangas p ON par.id_pachanga = p.id_pachanga 
-            WHERE par.id_pachanga = " . $pach);
+            $consulta=$this->db->query("SELECT DISTINCT nombre FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido 
+            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
+            WHERE par.id_pachanga_partido = " . $pach);
             $total = $consulta->rowCount();
             while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
                 if (round($total/2) != $cont) {
