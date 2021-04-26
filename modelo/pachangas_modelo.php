@@ -27,9 +27,9 @@
                     echo "<div class='col s12 m6 l3'>            
                     <div class='card-panel orange darken-4 tarjeta'>
                     <div class='card-content white-text'>
-                    <h5>" . $date->format('d-m-Y') . "</h5>
+                    <h5><span class='col s8'>" . $date->format('d-m-Y') . "</span><span class='col s4'> " .  $hour->format('H:i') . "</span></h5><br>
                     <p>Lugar: " . $filas["nombre_pab"] . "</p>
-                    <p>Hora: " . $hour->format('H:i') . "</p>
+                    <p>Dirección: " . $filas["direccion"] . ". " . $filas["localidad"] . "</p>
                     <p>Precio por persona: " . $filas["precio"] . "€</p>
                     <p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>";
                     
@@ -42,7 +42,8 @@
                         <a href='#' class='btn red white-text waves-effect waves-block waves-light'>Cancelar pachanga</a>";
 
                     } else {
-                        echo "<a href='#' class='btn yellow black-text waves-effect waves-block waves-light'>Abandonar pachanga</a>";
+                        echo "<a href='#' class='prueba btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        "'>Abandonar pachanga</a>";
                     }
                     echo "</div></div></div>";
                     
@@ -74,6 +75,15 @@
                 }
                 $cont++;
             }
+        }
+
+        public function abandonar($idp) {
+            $this->db->query("DELETE FROM partidos WHERE id_usuario_partido = " . $_SESSION["usuario"] . " AND id_pachanga_partido = " . $idp);
+
+        }
+
+        public function cerrar() {
+            $this->db->query("UPDATE partidos SET activo = 0 WHERE id_pachanga_partido = 30");
         }
 
     }
