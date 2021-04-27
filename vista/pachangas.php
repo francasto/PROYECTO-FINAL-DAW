@@ -39,7 +39,7 @@
                 data: {idp: $(".baja").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
                 success: function(respuesta) {
 		            console.log(respuesta)
-                    location.reload();
+                    location.reload(); 
                 }
             });                             
         });
