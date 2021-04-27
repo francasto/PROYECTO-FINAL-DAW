@@ -30,15 +30,18 @@
 
 <script>
     $(document).ready(function(){
-        $('.prueba').on("click", function(){
-            console.log($(".prueba").data("id_pachanga"));
+        $('.baja').on("click", function(e){
+            e.preventDefault();
 
             $.ajax({
-                url: "../controlador/pachangas_controlador.php",
-                method: "post",
-                data: {idp: $(".prueba").data("id_pachanga")}
-            });
-            return false;                  
+                url: "../controlador/baja_controlador.php",
+                type: "post",
+                data: {idp: $(".baja").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
+                success: function(respuesta) {
+		            console.log(respuesta)
+                    location.reload();
+                }
+            });                             
         });
     })
 </script>

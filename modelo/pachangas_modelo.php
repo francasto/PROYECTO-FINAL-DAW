@@ -37,12 +37,12 @@
                         echo "<div>Lista de jugadores: </div><p class='col s6'>";
                         $this->listado_jugadores($filas["id_pachanga"]);
                         echo "<br></p>
-                        <a href='#' class='btn green black-text waves-effect waves-block waves-light'>Cerrar convocatoria</a><br>
-                        <a href='#' class='btn yellow black-text waves-effect waves-block waves-light'>Modificar pachanga</a><br>
-                        <a href='#' class='btn red white-text waves-effect waves-block waves-light'>Cancelar pachanga</a>";
+                        <a href='#' class='cerrar btn green black-text waves-effect waves-block waves-light'>Cerrar convocatoria</a><br>
+                        <a href='#' class='modificar btn yellow black-text waves-effect waves-block waves-light'>Modificar pachanga</a><br>
+                        <a href='#' class='cancelar btn red white-text waves-effect waves-block waves-light'>Cancelar pachanga</a>";
 
                     } else {
-                        echo "<a href='#' class='prueba btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        echo "<a href='#' class='baja btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
                         "'>Abandonar pachanga</a>";
                     }
                     echo "</div></div></div>";
@@ -77,9 +77,8 @@
             }
         }
 
-        public function abandonar($idp) {
-            $this->db->query("DELETE FROM partidos WHERE id_usuario_partido = " . $_SESSION["usuario"] . " AND id_pachanga_partido = " . $idp);
-
+        public function abandonar($idp,$usuario) {
+            $this->db->query("DELETE FROM partidos WHERE id_usuario_partido = " . $usuario . " AND id_pachanga_partido = " . $idp);
         }
 
         public function cerrar() {
