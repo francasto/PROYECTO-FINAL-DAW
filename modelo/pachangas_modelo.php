@@ -82,7 +82,7 @@
         }
 
         public function cerrar() {
-            $this->db->query("UPDATE partidos SET activo = 0 WHERE id_pachanga_partido = 30");
+            $this->db->query("UPDATE pachangas SET activo = 0 WHERE id_pachanga_partido = 30");
         }
 
     }
