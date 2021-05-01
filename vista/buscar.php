@@ -19,7 +19,6 @@
             </nav>              
         </div>
         <div class="row center-align" id="resultado">
-            <?php require_once("../modelo/buscar_modelo.php"); ?>
             <?php require_once("../controlador/buscar_controlador.php"); ?>
         </div>
     </div>
@@ -34,6 +33,19 @@
                 type: "post",
                 success: function(respuesta) {
 		            $("#respuesta").html(respuesta);
+                }
+            });                             
+        });
+        $('.alta').on("click", function(e){
+            e.preventDefault();
+
+            $.ajax({
+                url: "../controlador/apuntarse_controlador.php",
+                type: "post",
+                data: {idp: $(".alta").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
+                success: function(respuesta) {
+		            console.log(respuesta)
+                    location.href= "pachangas.php";
                 }
             });                             
         });

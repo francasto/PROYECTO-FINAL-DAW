@@ -15,12 +15,31 @@
         }
 
         public function get_pachangas() {
+            $reg_por_pag = 4;
+            if(isset($_GET["pagina"])) {
+                $pagina = $_GET["pagina"];
+                /*if($_GET["pagina"] == 1) {
+                    header("Location:pachangas.php");
+                } else {
+                    $pagina = $_GET["pagina"];
+                }*/
+            } else {
+                $pagina = 1;
+            }
+
+            $inicio = ($pagina - 1) * $reg_por_pag;
+
             $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE j.id_usuario = " . $_SESSION["id"]);
-            if($consulta->rowCount() > 0) {
-                while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
+
+            $mostrar=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
+            INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
+            WHERE j.id_usuario = " . $_SESSION["id"] . " LIMIT " . $inicio . "," . $reg_por_pag);
+            if($mostrar->rowCount() > 0) {
+                while($filas=$mostrar->fetch(PDO::FETCH_ASSOC)) {
                     $date = new DateTime($filas["fecha"]);
                     $hour = new DateTime($filas["hora"]);
                     $this->get_organizador($filas["id_creador"]);
@@ -51,6 +70,8 @@
             }
             
         }
+
+        
 
         public function get_organizador($id) {
             $consulta=$this->db->query("select nombre, movil from jugadores where id_usuario = " . $id);

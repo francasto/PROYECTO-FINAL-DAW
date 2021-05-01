@@ -12,20 +12,14 @@
 </div>
 <div class="section container">
     <div class="row"> 
-        <?php require_once("../modelo/pachangas_modelo.php"); ?>
         <?php require_once("../controlador/pachangas_controlador.php"); ?>
     </div>
-    <div class="row center-align">
-        <ul class="pagination">
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active waves-effect"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-        </ul>
+    <div class="row">
+        <?php require_once("../controlador/paginacion_controlador.php"); ?>
+        
     </div>
+    
+
 </div>
 
 <script>
@@ -38,7 +32,6 @@
                 type: "post",
                 data: {idp: $(".baja").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
                 success: function(respuesta) {
-		            console.log(respuesta)
                     location.reload(); 
                 }
             });                             
