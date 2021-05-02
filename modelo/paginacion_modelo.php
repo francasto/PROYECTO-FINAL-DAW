@@ -1,5 +1,6 @@
 <?php 
     require_once("../modelo/conectar.php");
+    require_once("../modelo/pachangas_modelo.php");
 
     class Paginacion_modelo {
         private $db;
@@ -8,7 +9,8 @@
             $this->db=Conectar::conexion();
         }
 
-        public function get_paginacion() {
+        public function get_paginacion($opc) {
+            
             $reg_por_pag = 4;
             if(isset($_GET["pagina"])) {
                 $pagina = $_GET["pagina"];
@@ -21,13 +23,20 @@
                 $pagina = 1;
             }
 
-            $c = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
-            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
-            INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"]);
-
-            $total_reg = $c->rowCount();
-
+            switch ($opc) {
+                case "pachangas":
+                    $pacha = new Pachangas_modelo();
+                    $total_reg = $pacha->get_recuento();
+                    break;
+                case "buscar":
+                    $bus = new Buscar_modelo();
+                    $total_reg = $bus->get_recuento();
+                    break;
+                case "historial":
+                    $his = new Historial_modelo();
+                    $total_reg = $his->get_recuento();
+            }           
+            
             $total_paginas = ceil($total_reg / $reg_por_pag);
 
             if($pagina > 1) {

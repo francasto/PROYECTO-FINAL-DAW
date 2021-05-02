@@ -1,4 +1,5 @@
 <?php include("header_privado.php"); ?>
+<?php require_once("../controlador/perfil_controlador.php"); ?>
 
     <div class="section container">
         <div class="row center-align">
@@ -14,7 +15,7 @@
                 </tr>
                 <tr>
                     <th>Nombre:</th>
-                    <td>Manolito</td>
+                    <td><?php $perfil->nombre ?></td>
                 </tr>
                 <tr>
                     <th>Primer apellido:</th>

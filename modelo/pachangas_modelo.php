@@ -29,15 +29,15 @@
 
             $inicio = ($pagina - 1) * $reg_por_pag;
 
-            $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+           /* $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"]);
+            WHERE j.id_usuario = " . $_SESSION["id"]);*/
 
             $mostrar=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"] . " LIMIT " . $inicio . "," . $reg_por_pag);
+            WHERE j.id_usuario = " . $_SESSION["id"] . " ORDER BY fecha, hora ASC LIMIT " . $inicio . "," . $reg_por_pag);
             if($mostrar->rowCount() > 0) {
                 while($filas=$mostrar->fetch(PDO::FETCH_ASSOC)) {
                     $date = new DateTime($filas["fecha"]);
@@ -104,6 +104,15 @@
 
         public function cerrar() {
             $this->db->query("UPDATE pachangas SET activo = 0 WHERE id_pachanga_partido = 30");
+        }
+
+        public function get_recuento() {
+            $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
+            INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
+            WHERE j.id_usuario = " . $_SESSION["id"]);
+
+            return $consulta->rowCount();
         }
 
     }

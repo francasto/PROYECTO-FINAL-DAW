@@ -72,6 +72,7 @@
                     $("#clave").attr("required", true);
                 }
             });
+
             $('#publico').on("click", function(){
                 var d = document.getElementById("publico").checked;
                 if (d) {
@@ -83,7 +84,21 @@
                 $("#privado").val($("#clave").val());
                 console.log($("#privado").val());
             });
-    })
+
+            var hoy = new Date();
+            var dd = hoy.getDate() + 1;
+            var mm = hoy.getMonth() + 1; 
+            var yyyy = hoy.getFullYear();
+            if(dd < 10){
+                dd = '0' + dd
+            } 
+            if(mm < 10){
+                mm = '0' + mm
+            } 
+            hoy = yyyy + '-' + mm + '-' + dd;
+            $("#fecha").attr("min", hoy);
+
+        })
     </script>
 
 <?php include("footer_privado.php"); ?>

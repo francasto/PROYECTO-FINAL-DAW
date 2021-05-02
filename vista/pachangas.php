@@ -15,7 +15,7 @@
         <?php require_once("../controlador/pachangas_controlador.php"); ?>
     </div>
     <div class="row">
-        <?php require_once("../controlador/paginacion_controlador.php"); ?>
+        <?php $opc="pachangas";require_once("../controlador/paginacion_controlador.php");  ?>
         
     </div>
     
