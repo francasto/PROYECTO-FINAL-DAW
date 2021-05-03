@@ -3,6 +3,4 @@
 
     $perfil=new Perfil_modelo();
     $perfil->get_perfil();
-
-    require_once("../vista/login_vista.php");
 ?>

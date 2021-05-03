@@ -26,7 +26,7 @@
                             <label for="hora">Hora:</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" id="precio" name="precio" class="validate" required>
+                            <input type="number" id="precio" name="precio" class="validate" min=0 step=".01" required>
                             <label for="precio">Precio:</label>
                         </div>
                         <div class="input-field col s6">
