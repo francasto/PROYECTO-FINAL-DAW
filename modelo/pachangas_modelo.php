@@ -53,12 +53,16 @@
                     <p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>";
                     
                     if($filas["id_creador"] == $_SESSION["id"]) {  
+                        if($filas["codigo_pachanga"] != "000000") {
+                            echo "<p>Código de la pachanga: " . $filas["codigo_pachanga"] . "</p>"; 
+                        }
                         echo "<div>Lista de jugadores: </div><p class='col s6'>";
                         $this->listado_jugadores($filas["id_pachanga"]);
                         echo "<br></p>
                         <a href='#' class='cerrar btn green black-text waves-effect waves-block waves-light'>Cerrar convocatoria</a><br>
                         <a href='#' class='modificar btn yellow black-text waves-effect waves-block waves-light'>Modificar pachanga</a><br>
-                        <a href='#' class='cancelar btn red white-text waves-effect waves-block waves-light'>Cancelar pachanga</a>";
+                        <a href='#' class='cancelar btn red white-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        "'>Cancelar pachanga</a>";
 
                     } else {
                         echo "<a href='#' class='baja btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
@@ -102,8 +106,13 @@
             $this->db->query("DELETE FROM partidos WHERE id_usuario_partido = " . $usuario . " AND id_pachanga_partido = " . $idp);
         }
 
-        public function cerrar() {
-            $this->db->query("UPDATE pachangas SET activo = 0 WHERE id_pachanga_partido = 30");
+        public function cerrar($idp) {
+            $this->db->query("UPDATE pachangas SET activo = 0 WHERE id_pachanga = $idp");
+        }
+
+        public function cancelar($idp) {
+            $this->db->query("DELETE FROM pachangas WHERE id_pachanga = " . $idp);
+            $this->db->query("DELETE FROM partidos WHERE id_pachanga_partido = " . $idp);
         }
 
         public function get_recuento() {

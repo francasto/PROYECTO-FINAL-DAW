@@ -36,6 +36,19 @@
                 }
             });                             
         });
+
+        $('.cancelar').on("click", function(e){
+            e.preventDefault();
+
+            $.ajax({
+                url: "../controlador/cancelar_controlador.php",
+                type: "post",
+                data: {idp: $(".cancelar").data("id_pachanga")},
+                success: function(respuesta) {
+                    location.reload(); 
+                }
+            });                             
+        });
     })
 </script>
 
