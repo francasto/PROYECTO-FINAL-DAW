@@ -16,7 +16,7 @@
 
                 $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  pachangas p ON j.id_usuario = p.id_creador 
                 INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-                WHERE pab.localidad = '" . $buscar . "' or p.codigo_pachanga = '" . $buscar . "' ORDER BY fecha, hora ASC");
+                WHERE (pab.localidad = '" . $buscar . "' or p.codigo_pachanga = '" . $buscar . "') and activa = 1 ORDER BY fecha, hora ASC");
                 if($consulta->rowCount() > 0) {
                     while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
                         if($this->apuntado($filas["id_pachanga"],$_SESSION["id"])->rowCount() == 0) {

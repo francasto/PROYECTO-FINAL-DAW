@@ -13,13 +13,13 @@
 
         public function __construct() {
             $this->db=Conectar::conexion();
-            $this->foto_perfil = "../img/perfil.jpg";
+            $this->foto_perfil = "";
             $this->nombre = "";
             $this->primer_apellido = "";
             $this->segundo_apellido = "";
             $this->correo = "";
             $this->telefono = "";
-            $this->nombre_futbol = "El pelusa";
+            $this->nombre_futbol = "";
         }
 
         public function get_perfil() {
@@ -67,36 +67,34 @@
             return $this->nombre_futbol;
         }
 
-        public function actualizar() {
-            if(isset($_POST["actualizar"])) {
-                $nombre_imagen = $_FILES['imagen']['name'];
-                $tipo_imagen = $_FILES['imagen']['type'];
-                $tamano_imagen = $_FILES['imagen']['size'];
+        public function actualizar() {            
+            $nombre_imagen = $_FILES['imagen']['name'];
+            $tipo_imagen = $_FILES['imagen']['type'];
+            $tamano_imagen = $_FILES['imagen']['size'];
 
-                if($nombre_imagen != "") {
-                    if($tamano_imagen <= 524288 && ($tipo_imagen == "image/jpeg" || $tipo_imagen == "image/jpg" || $tipo_imagen == "image/png")) {
-                        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . "/img/fotos_perfil/";
-                        move_uploaded_file($_FILES['imagen']['tmp_name'],$carpeta_destino.$nombre_imagen);
-                        $foto = "../img/fotos_perfil/" . $nombre_imagen;
-                    } else {
-                        echo "Imágen no válida. Debe ser igual o menor a 512kb y los formatos admitidos son jpg, jpeg y png.";
-                    }
-                    
+            if($nombre_imagen != "") {
+                if($tamano_imagen <= 524288 && ($tipo_imagen == "image/jpeg" || $tipo_imagen == "image/jpg" || $tipo_imagen == "image/png")) {
+                    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . "/img/fotos_perfil/";
+                    move_uploaded_file($_FILES['imagen']['tmp_name'],$carpeta_destino.$nombre_imagen);
+                    $foto = "../img/fotos_perfil/" . $nombre_imagen;
                 } else {
-                    $foto = $this->get_foto_perfil();
+                    echo "Imágen no válida. Debe ser igual o menor a 512kb y los formatos admitidos son jpg, jpeg y png.";
                 }
                 
-
-                $nombre = htmlentities(addslashes($_POST["nombre"]));
-                $apellido1 = htmlentities(addslashes($_POST["apellido1"]));
-                $apellido2 = htmlentities(addslashes($_POST["apellido2"]));
-                $tel = htmlentities(addslashes($_POST["tel"]));                
-                $apodo = htmlentities(addslashes($_POST["apodo"]));
-                $sql="UPDATE jugadores SET nombre = '". $nombre . "', apellido1 = '" . $apellido1 . "', apellido2 = '" . $apellido2 . 
-                "', movil = '" . $tel . "', foto = '" . $foto . "', apodo = '" . $apodo . "' where id_usuario = " . $_SESSION["id"];
-                $consulta=$this->db->query($sql);
-                header("Location:perfil.php");
+            } else {
+                $foto = $this->get_foto_perfil();
             }
+            
+
+            $nombre = htmlentities(addslashes($_POST["nombre"]));
+            $apellido1 = htmlentities(addslashes($_POST["apellido1"]));
+            $apellido2 = htmlentities(addslashes($_POST["apellido2"]));
+            $tel = htmlentities(addslashes($_POST["tel"]));                
+            $apodo = htmlentities(addslashes($_POST["apodo"]));
+            $sql="UPDATE jugadores SET nombre = '". $nombre . "', apellido1 = '" . $apellido1 . "', apellido2 = '" . $apellido2 . 
+            "', movil = '" . $tel . "', foto = '" . $foto . "', apodo = '" . $apodo . "' where id_usuario = " . $_SESSION["id"];
+            $consulta=$this->db->query($sql);
+            header("Location:perfil.php");
         }
     }
 ?>

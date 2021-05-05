@@ -1,6 +1,10 @@
 <?php include("header_privado.php"); ?>
 
     <div class="section container">
+        <div class="row center-align">
+            <h2>Consejos útiles</h2>
+            <h6>Te mostramos unos consejos útiles sobre alimentación y deporte.</h6><br><br>
+        </div>
         <div class="row">
             <div class="col s12">
                 <ul class="tabs orange darken-3">

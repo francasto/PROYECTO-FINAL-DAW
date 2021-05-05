@@ -3,5 +3,7 @@
 
     $perfil=new Actualizar_perfil_modelo();
     $perfil->get_perfil();
-    $perfil->actualizar();
+    if(isset($_POST["actualizar"])) {
+        $perfil->actualizar();
+    }
 ?>

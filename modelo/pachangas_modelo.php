@@ -49,8 +49,7 @@
                     <h5><span class='col s8'>" . $date->format('d-m-Y') . "</span><span class='col s4'> " .  $hour->format('H:i') . "</span></h5><br>
                     <p>Lugar: " . $filas["nombre_pab"] . "</p>
                     <p>Dirección: " . $filas["direccion"] . ". " . $filas["localidad"] . "</p>
-                    <p>Precio por persona: " . $filas["precio"] . "€</p>
-                    <p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>";
+                    <p>Precio por persona: " . $filas["precio"] . "€</p>";
                     
                     if($filas["id_creador"] == $_SESSION["id"]) {  
                         if($filas["codigo_pachanga"] != "000000") {
@@ -58,14 +57,24 @@
                         }
                         echo "<div>Lista de jugadores: </div><p class='col s6'>";
                         $this->listado_jugadores($filas["id_pachanga"]);
-                        echo "<br></p>
-                        <a href='#' class='cerrar btn green black-text waves-effect waves-block waves-light'>Cerrar convocatoria</a><br>
-                        <a href='#' class='modificar btn yellow black-text waves-effect waves-block waves-light'>Modificar pachanga</a><br>
-                        <a href='#' class='cancelar btn red white-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
-                        "'>Cancelar pachanga</a>";
+                        echo "<br></p>";
+                        if($filas["activa"] == 0) {
+                            echo "<p class='center-align cerrada white-text'>¡Pachanga cerrada!</p>
+                            <p><a href='#' class='reabrir btn green black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
+                        "''>Reabrir convocatoria</a></p>";
+                        } else {
+                            echo "<p><a href='#' class='cerrar btn green black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
+                        "''>Cerrar convocatoria</a></p>";
+                        }
+                        echo "<form action='modificar_pachanga.php' method='post'>
+                            <p><button class='col s12 modificar btn yellow black-text waves-effect waves-block waves-light' type='submit' name='idp' value=" . $filas["id_pachanga"] . ">Modificar pachanga</button></p>
+                        </form><br><br>
+                        <p><a class='cancelar btn red accent-3 white-text waves-effect waves-block waves-light modal-trigger' data-id_pachanga='" . $filas["id_pachanga"] .
+                        "' href='#modal1'>Cancelar pachanga</a></p>";
 
                     } else {
-                        echo "<a href='#' class='baja btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        echo "<p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>
+                        <a href='#' class='baja btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
                         "'>Abandonar pachanga</a>";
                     }
                     echo "</div></div></div>";
@@ -73,9 +82,7 @@
                 }
             }
             
-        }
-
-        
+        }        
 
         public function get_organizador($id) {
             $consulta=$this->db->query("select nombre, movil from jugadores where id_usuario = " . $id);
@@ -107,7 +114,11 @@
         }
 
         public function cerrar($idp) {
-            $this->db->query("UPDATE pachangas SET activo = 0 WHERE id_pachanga = $idp");
+            $this->db->query("UPDATE pachangas SET activa = 0 WHERE id_pachanga = " . $idp);
+        }
+
+        public function reabrir($idp) {
+            $this->db->query("UPDATE pachangas SET activa = 1 WHERE id_pachanga = " . $idp);
         }
 
         public function cancelar($idp) {
