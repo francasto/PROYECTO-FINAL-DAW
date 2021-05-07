@@ -7,7 +7,7 @@
 
     $pach->get_pachanga($idp);
     
-    if(isset($_POST["actualizar"])) {
+    if(isset($_POST["modificar"])) {
         $pach->set_pachanga($idp);
     }
     

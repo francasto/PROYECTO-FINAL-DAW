@@ -6,7 +6,7 @@
         <?php
             echo "Hola: " . $_SESSION["usuario"] . "<br><br>";
         ?>
-        <a href="<?php echo $_SERVER['PHP_SELF'];?> " class="btn">actualizar pachangas</a>
+        <a href="<?php echo $_SERVER['PHP_SELF'];?> " class="btn green accent-2 black-text">actualizar pachangas</a>
         <a href="../controlador/cerrarsesion.php" class="btn">Cerrar sesión</a>                
     </div>
 </div>
@@ -22,7 +22,7 @@
         <h5>Todos los datos relativos a esta pachanga serán eliminados.</h5>
     </div>
     <div class="modal-footer orange darken-4">
-        <a href="#!" class="eliminar modal-close waves-effect waves-green green accent-2 black-text btn">Eliminar de todos modos</a>
+        <a href="#!" class="cancelar modal-close waves-effect waves-green green accent-2 black-text btn">Eliminar de todos modos</a>
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
     </div>
     </div>
@@ -36,25 +36,31 @@
 
 <script>
     $(document).ready(function(){
-        $('.baja').on("click", function(e){
+        $('.abandonar').on("click", function(e){
             e.preventDefault();
 
             $.ajax({
                 url: "../controlador/botones_controlador.php",
                 type: "post",
-                data: {accion: "baja",idp: $(".baja").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
+                data: {accion: "abandonar",idp: $(this).data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
                 success: function(respuesta) {
                     location.reload(); 
                 }
             });                             
         });
 
-        $('.eliminar').on("click", function(e){
+        $('.cancel').on("click", function(e){
+            e.preventDefault();
+            var idp = $(this).data("id_pachanga");
+            $(".cancelar").data("id_pachanga",idp);                                        
+        });
+
+        $('.cancelar').on("click", function(e){
             e.preventDefault();       
             $.ajax({
                 url: "../controlador/botones_controlador.php",
                 type: "post",
-                data: {accion: "cancelar",idp: $(".cancelar").data("id_pachanga")},
+                data: {accion: "cancelar",idp: $(this).data("id_pachanga")},
                 success: function(respuesta) {
                     location.reload(); 
                 }
@@ -67,7 +73,7 @@
             $.ajax({
                 url: "../controlador/botones_controlador.php",
                 type: "post",
-                data: {accion: "cerrar",idp: $(".cancelar").data("id_pachanga")},
+                data: {accion: "cerrar",idp: $(this).data("id_pachanga")},
                 success: function(respuesta) {
                     location.reload();
                 }
@@ -80,7 +86,7 @@
             $.ajax({
                 url: "../controlador/botones_controlador.php",
                 type: "post",
-                data: {accion: "reabrir",idp: $(".cancelar").data("id_pachanga")},
+                data: {accion: "reabrir",idp: $(this).data("id_pachanga")},
                 success: function(respuesta) {
                     location.reload();
                 }
@@ -92,7 +98,7 @@
             $.ajax({
                 url: "../controlador/modificar_pachanga_controlador.php",
                 type: "post",
-                data: {idp: $(".cancelar").data("id_pachanga")},
+                data: {idp: $(this).data("id_pachanga")},
                 success: function(respuesta) {
                     location.href = "modificar_pachanga.php";
                 }

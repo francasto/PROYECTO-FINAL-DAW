@@ -60,21 +60,21 @@
                         echo "<br></p>";
                         if($filas["activa"] == 0) {
                             echo "<p class='center-align cerrada white-text'>¡Pachanga cerrada!</p>
-                            <p><a href='#' class='reabrir btn green black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
+                            <p><a href='#' class='reabrir btn green accent-2 black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
                         "''>Reabrir convocatoria</a></p>";
                         } else {
-                            echo "<p><a href='#' class='cerrar btn green black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
+                            echo "<p><a href='#' class='cerrar btn green accent-2 black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
                         "''>Cerrar convocatoria</a></p>";
                         }
                         echo "<form action='modificar_pachanga.php' method='post'>
                             <p><button class='col s12 modificar btn yellow black-text waves-effect waves-block waves-light' type='submit' name='idp' value=" . $filas["id_pachanga"] . ">Modificar pachanga</button></p>
                         </form><br><br>
-                        <p><a class='cancelar btn red accent-3 white-text waves-effect waves-block waves-light modal-trigger' data-id_pachanga='" . $filas["id_pachanga"] .
+                        <p><a class='cancel btn red accent-3 white-text waves-effect waves-block waves-light modal-trigger' data-id_pachanga='" . $filas["id_pachanga"] .
                         "' href='#modal1'>Cancelar pachanga</a></p>";
 
                     } else {
                         echo "<p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>
-                        <a href='#' class='baja btn yellow black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        <a href='#' class='abandonar btn yellow black-text waves-effect waves-block waves-light' value='" . $filas["id_pachanga"] . "' data-id_pachanga='" . $filas["id_pachanga"] .
                         "'>Abandonar pachanga</a>";
                     }
                     echo "</div></div></div>";

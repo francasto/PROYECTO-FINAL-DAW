@@ -27,7 +27,7 @@
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE p.id_pachanga = " . $idp);
             while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
-                //$this->lugar = $filas["añskjf"];
+                $this->lugar = $filas["id_pabellon"];
                 $this->fecha = $filas["fecha"];
                 $this->hora = $filas["hora"];
                 $this->precio = $filas["precio"];
@@ -73,9 +73,9 @@
             $codigo=htmlentities(addslashes($_POST["visibilidad"]));
             $participantes=htmlentities(addslashes($_POST["participantes"]));
             $sql="UPDATE pachangas SET fecha = '". $fecha . "', hora = '" . $hora . "', id_pabellon = '" . $pabellon . 
-            "', precio = '" . $precio . "', visibilidad = '" . $codigo . "', participantes = '" . $participantes . "' where id_pachanga = " . $idp;
+            "', precio = '" . $precio . "', codigo_pachanga = '" . $codigo . "', participantes = '" . $participantes . "' where id_pachanga = " . $idp;
             $this->db->query($sql);
-            header("location:../vista/pachangas.php");            
+            header("location:../vista/pachangas.php");        
         }
     }
 ?>

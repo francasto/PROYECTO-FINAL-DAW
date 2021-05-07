@@ -7,13 +7,12 @@
             <h6>Modifica los datos de tu pachanga.</h6>
             <br><br>
             <div class="col s12 m12 l6 offset-l3">
-                <form action="<?php echo $_SERVER['PHP_SELF'];?>" class="col s12" method="post" accept-charset="UTF-8">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="col s12" method="post" accept-charset="UTF-8">
                     <div class="row card-panel">
                         <div class="input-field col s10">
-                        <select id="pabellon" name="pabellon" class="validate" required>
-                            <option value="" disabled selected>Selecciona o crea un nuevo lugar donde jugar</option>
-                            <?php require_once("../controlador/carga_pabellones_controlador.php"); ?>
-                        </select>
+                            <select id="pabellon" name="pabellon" class="validate browser-default" required>
+                                <?php require_once("../controlador/carga_pabellones_controlador.php"); ?>
+                            </select>
                         </div>
                         <div class="input-field col s2">
                             <a href="pabellones.php" class="waves-effect waves-light btn">Nuevo</a>
@@ -43,7 +42,7 @@
                             </p>                       
                             <p class="col s6">
                                 <label>
-                                    <input class="with-gap" id="privado" name="visibilidad" type="radio" value="javascript valor de clave">
+                                    <input class="with-gap" id="privado" name="visibilidad" type="radio" value="">
                                     <span>Pachanga privada</span>
                                 </label>
                             </p>
@@ -52,11 +51,11 @@
                                 <label for="clave">Clave de la pachanga:</label>
                             </div> 
                             <div class="input-field col s12">
-                                <input type="hidden" id="idp" name="idp" value="<?php $pach->get_idp(); ?>">
+                                <input type="hidden" id="idp" name="idp" value="<?php echo $pach->get_idp(); ?>">
                             </div>                           
                         </div>                      
             
-                        <button class="btn" type="submit">Crear pachanga</button>
+                        <button id="modificar" name="modificar" class="btn" type="submit">Modificar pachanga</button>
                     </div>
                 </form>
             </div>              
@@ -67,9 +66,19 @@
         $(document).ready(function(){
             $("#campoClave").hide();
 
+            if(<?php echo "'" . $pach->get_clave() . "'"; ?> == '000000') {
+                $("#publico").attr("checked", true);
+                $("#clave").val("");
+            } else {
+                $("#privado").attr("checked", true);
+                $("#campoClave").show();
+            }
+
+            $("#pabellon option[value=<?php echo $pach->get_lugar(); ?>]").attr("selected", true);
+
             $('#privado').on("click", function(){
                 var c = document.getElementById("privado").checked;
-                if (c) {
+                if (c) {                    
                     $("#campoClave").show();
                     $("#clave").attr("required", true);
                 }
