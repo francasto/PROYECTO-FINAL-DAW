@@ -1,5 +1,6 @@
 <?php   
     require_once("../modelo/conectar.php");
+    require_once("../modelo/pachangas_modelo.php");
 
     class Buscar_modelo {
         private $db;
@@ -46,7 +47,7 @@
         }
 
         public function apuntado($idj, $idp) {
-            $c=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos p ON j.id_usuario = p.id_usuario_partido 
+            $c = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos p ON j.id_usuario = p.id_usuario_partido 
                 WHERE p.id_pachanga_partido = '" . $idj . "' AND j.id_usuario = '" . $idp . "'");
             
             return $c;
@@ -54,6 +55,8 @@
 
         public function apuntarse($usuario,$idp) {
             $this->db->query("INSERT INTO partidos (id_usuario_partido, id_pachanga_partido) VALUES (" . $idp . "," . $usuario . ")");
+            $convocatoria = new Pachangas_modelo();
+            $convocatoria->convocatoria($usuario);
         }
     }
 ?>

@@ -1,5 +1,4 @@
 <?php include("header_privado.php"); ?>
-
     <div class="section container">
         <div class="row center-align">
             <h2>Buscar pachangas</h2>

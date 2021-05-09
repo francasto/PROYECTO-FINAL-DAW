@@ -30,7 +30,7 @@
                             <label for="precio">Precio:</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="number" id="participantes" name="participantes" class="validate" min=1 required>
+                            <input type="number" id="participantes" name="participantes" class="validate" min=2 required>
                             <label for="participantes">Participantes:</label>
                         </div>
                         <div class="input-field col s12"> 

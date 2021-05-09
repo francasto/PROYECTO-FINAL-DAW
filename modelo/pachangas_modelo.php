@@ -34,7 +34,7 @@
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE j.id_usuario = " . $_SESSION["id"]);*/
 
-            $mostrar=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+            $mostrar = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario = par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE j.id_usuario = " . $_SESSION["id"] . " ORDER BY fecha, hora ASC LIMIT " . $inicio . "," . $reg_por_pag);
@@ -111,6 +111,7 @@
 
         public function abandonar($idp,$usuario) {
             $this->db->query("DELETE FROM partidos WHERE id_usuario_partido = " . $usuario . " AND id_pachanga_partido = " . $idp);
+            $this->convocatoria($idp);
         }
 
         public function cerrar($idp) {
@@ -133,6 +134,22 @@
             WHERE j.id_usuario = " . $_SESSION["id"]);
 
             return $consulta->rowCount();
+        }
+
+        public function convocatoria($idp) {
+            $consulta = $this->db->query("SELECT DISTINCT id_usuario_partido FROM partidos WHERE id_pachanga_partido = '" . $idp . "'");
+            $apuntados = $consulta->rowCount();
+
+            $consulta = $this->db->query("SELECT participantes FROM pachangas WHERE id_pachanga = '" . $idp . "'");
+            while($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
+                $aforo = $filas["participantes"];
+            }
+
+            if($apuntados == $aforo) {
+                $consulta = $this->db->query("UPDATE pachangas SET activa = 0 WHERE id_pachanga = '" . $idp . "'");
+            } else {
+                $consulta = $this->db->query("UPDATE pachangas SET activa = 1 WHERE id_pachanga = '" . $idp . "'");
+            }
         }
 
     }
