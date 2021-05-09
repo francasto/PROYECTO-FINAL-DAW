@@ -26,6 +26,17 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
     </div>
     </div>
+
+    <div id="modal2" class="modal center-align">
+    <div class="modal-content center-align orange darken-4">
+        <h4>¿Estás seguro de que quieres abandonar la pachanga?</h4>
+        <h5>Podrás volver a apuntarte más adelante si aún quedan plazas libres.</h5>
+    </div>
+    <div class="modal-footer orange darken-4">
+        <a href="#!" class="abandonar modal-close waves-effect waves-green green accent-2 black-text btn">Abandonar la pachanga</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
+    </div>
+    </div>
         
         <?php $opc="pachangas";require_once("../controlador/paginacion_controlador.php");  ?>
         
@@ -36,6 +47,12 @@
 
 <script>
     $(document).ready(function(){
+        $('.baja').on("click", function(e){
+            e.preventDefault();
+            var idp = $(this).data("id_pachanga");
+            $(".abandonar").data("id_pachanga",idp);                                        
+        });
+
         $('.abandonar').on("click", function(e){
             e.preventDefault();
 

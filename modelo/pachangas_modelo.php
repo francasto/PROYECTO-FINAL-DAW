@@ -60,11 +60,11 @@
                         echo "<br></p>";
                         if($filas["activa"] == 0) {
                             echo "<p class='center-align cerrada white-text'>¡Pachanga cerrada!</p>
-                            <p><a href='#' class='reabrir btn green accent-2 black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
-                        "''>Reabrir convocatoria</a></p>";
+                            <p><a href='#' class='reabrir btn green accent-2 black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        "'>Reabrir convocatoria</a></p>";
                         } else {
-                            echo "<p><a href='#' class='cerrar btn green accent-2 black-text waves-effect waves-block waves-light data-id_pachanga='" . $filas["id_pachanga"] .
-                        "''>Cerrar convocatoria</a></p>";
+                            echo "<p><a href='#' class='cerrar btn green accent-2 black-text waves-effect waves-block waves-light' data-id_pachanga='" . $filas["id_pachanga"] .
+                        "'>Cerrar convocatoria</a></p>";
                         }
                         echo "<form action='modificar_pachanga.php' method='post'>
                             <p><button class='col s12 modificar btn yellow black-text waves-effect waves-block waves-light' type='submit' name='idp' value=" . $filas["id_pachanga"] . ">Modificar pachanga</button></p>
@@ -74,7 +74,7 @@
 
                     } else {
                         echo "<p>Organizador: " . $this->nombre_creador . " " . $this->movil_creador . "</p>
-                        <a href='#' class='abandonar btn yellow black-text waves-effect waves-block waves-light' value='" . $filas["id_pachanga"] . "' data-id_pachanga='" . $filas["id_pachanga"] .
+                        <a href='#modal2' class='baja btn yellow black-text waves-effect waves-block waves-light modal-trigger' value='" . $filas["id_pachanga"] . "' data-id_pachanga='" . $filas["id_pachanga"] .
                         "'>Abandonar pachanga</a>";
                     }
                     echo "</div></div></div>";

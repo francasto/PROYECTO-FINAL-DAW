@@ -11,7 +11,6 @@
             $pachanga->reabrir($_POST["idp"]);
             break;
         case "abandonar":
-            echo "idp: " . $_POST["idp"];
             $pachanga->abandonar($_POST["idp"],$_POST["usuario"]);
             break;
         case "cancelar":
