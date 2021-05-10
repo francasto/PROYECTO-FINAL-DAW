@@ -15,34 +15,31 @@
         <?php require_once("../controlador/pachangas_controlador.php"); ?>
     </div>
     <div class="row">
+        <div id="modal1" class="modal center-align">
+            <div class="modal-content center-align orange darken-4">
+                <h4>¿Estás seguro de que quieres cancelar la pachanga?</h4>
+                <h5>Todos los datos relativos a esta pachanga serán eliminados.</h5>
+            </div>
+            <div class="modal-footer orange darken-4">
+                <a href="#!" class="cancelar modal-close waves-effect waves-green green accent-2 black-text btn">Eliminar de todos modos</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
+            </div>
+        </div>
 
-    <div id="modal1" class="modal center-align">
-    <div class="modal-content center-align orange darken-4">
-        <h4>¿Estás seguro de que quieres cancelar la pachanga?</h4>
-        <h5>Todos los datos relativos a esta pachanga serán eliminados.</h5>
-    </div>
-    <div class="modal-footer orange darken-4">
-        <a href="#!" class="cancelar modal-close waves-effect waves-green green accent-2 black-text btn">Eliminar de todos modos</a>
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
-    </div>
+        <div id="modal2" class="modal center-align">
+            <div class="modal-content center-align orange darken-4">
+                <h4>¿Estás seguro de que quieres abandonar la pachanga?</h4>
+                <h5>Podrás volver a apuntarte más adelante si aún quedan plazas libres.</h5>
+            </div>
+            <div class="modal-footer orange darken-4">
+                <a href="#!" class="abandonar modal-close waves-effect waves-green green accent-2 black-text btn">Abandonar la pachanga</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
+            </div>
+        </div>        
     </div>
 
-    <div id="modal2" class="modal center-align">
-    <div class="modal-content center-align orange darken-4">
-        <h4>¿Estás seguro de que quieres abandonar la pachanga?</h4>
-        <h5>Podrás volver a apuntarte más adelante si aún quedan plazas libres.</h5>
-    </div>
-    <div class="modal-footer orange darken-4">
-        <a href="#!" class="abandonar modal-close waves-effect waves-green green accent-2 black-text btn">Abandonar la pachanga</a>
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Me lo he pensado mejor</a>
-    </div>
-    </div>
-        
-        <?php $opc="pachangas";require_once("../controlador/paginacion_controlador.php");  ?>
-        
-    </div>
-    
-
+    <?php $opc="pachangas";require_once("../controlador/paginacion_controlador.php");  ?>
+  
 </div>
 
 <script>

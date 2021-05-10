@@ -6,38 +6,34 @@
         private $id_creador;
         private $nombre_creador;
         private $movil_creador;
+        private $fecha;
+        private $hora;
 
         public function __construct() {
             $this->db=Conectar::conexion();
             $this->id_creador="";
             $this->nombre_creador="";
             $this->movil_creador="";
+            $this->fecha = date("Y-m-d");
+            $this->hora = date("h:i:s");
         }
 
         public function get_pachangas() {
             $reg_por_pag = 4;
             if(isset($_GET["pagina"])) {
                 $pagina = $_GET["pagina"];
-                /*if($_GET["pagina"] == 1) {
-                    header("Location:pachangas.php");
-                } else {
-                    $pagina = $_GET["pagina"];
-                }*/
+
             } else {
                 $pagina = 1;
             }
 
             $inicio = ($pagina - 1) * $reg_por_pag;
 
-           /* $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
-            INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
-            INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"]);*/
-
             $mostrar = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario = par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"] . " ORDER BY fecha, hora ASC LIMIT " . $inicio . "," . $reg_por_pag);
+            WHERE j.id_usuario = " . $_SESSION["id"] . " AND (p.fecha > '" . $this->fecha . "' OR (p.fecha = '" . $this->fecha . "' AND p.hora > '" . $this->hora . "')) 
+            ORDER BY fecha, hora ASC LIMIT " . $inicio . "," . $reg_por_pag);
             if($mostrar->rowCount() > 0) {
                 while($filas=$mostrar->fetch(PDO::FETCH_ASSOC)) {
                     $date = new DateTime($filas["fecha"]);
@@ -94,7 +90,7 @@
 
         public function listado_jugadores($pach) {
             $cont = 1;            
-            $consulta=$this->db->query("SELECT DISTINCT nombre FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido 
+            $consulta=$this->db->query("SELECT DISTINCT nombre FROM jugadores j INNER JOIN  partidos par ON j.id_usuario = par.id_usuario_partido 
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             WHERE par.id_pachanga_partido = " . $pach);
             $total = $consulta->rowCount();
@@ -128,10 +124,10 @@
         }
 
         public function get_recuento() {
-            $consulta=$this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario= par.id_usuario_partido
+            $consulta = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  partidos par ON j.id_usuario = par.id_usuario_partido
             INNER JOIN pachangas p ON par.id_pachanga_partido = p.id_pachanga 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
-            WHERE j.id_usuario = " . $_SESSION["id"]);
+            WHERE j.id_usuario = " . $_SESSION["id"] . " AND (p.fecha > '" . $this->fecha . "' OR (p.fecha = '" . $this->fecha . "' AND p.hora > '" . $this->hora . "'))");
 
             return $consulta->rowCount();
         }

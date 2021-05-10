@@ -14,11 +14,6 @@
             $reg_por_pag = 4;
             if(isset($_GET["pagina"])) {
                 $pagina = $_GET["pagina"];
-                /*if($_GET["pagina"] == 1) {
-                    header("Location:pachangas.php");
-                } else {
-                    $pagina = $_GET["pagina"];
-                }*/
             } else {
                 $pagina = 1;
             }

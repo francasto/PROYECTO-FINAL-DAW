@@ -20,6 +20,7 @@
         <div class="row center-align" id="resultado">
             <?php require_once("../controlador/buscar_controlador.php"); ?>
         </div>
+        <?php $opc="buscar";require_once("../controlador/paginacion_controlador.php");  ?>
     </div>
 
     <script>
