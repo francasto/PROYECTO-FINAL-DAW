@@ -11,26 +11,34 @@
         public function __construct() {
             $this->db=Conectar::conexion();
             $this->fecha = date("Y-m-d");
-            $this->hora = date("h:i:s");
+            $this->hora = date("H:i:s");
             if(isset($_POST["buscar"])) {
                 $this->buscar = $_POST["buscar"];
-            }
+            } 
         }
 
         public function get_pachangas() {
             $reg_por_pag = 4;
             if(isset($_GET["pagina"])) {
                 $pagina = $_GET["pagina"];
+                $this->buscar = $_SESSION["buscar"];
             } else {
                 $pagina = 1;
+                $_SESSION["buscar"] = "";
             }
 
             $inicio = ($pagina - 1) * $reg_por_pag;
 
-            if(isset($_POST["buscar"])) {       
+            if(isset($_POST["buscar"])) {                
                 $this->buscar = htmlentities(addslashes($_POST["buscar"]));
-                $this->buscar = strtolower($this->buscar);
+                $this->buscar = strtolower($this->buscar); 
+                $_SESSION["buscar"] = $this->buscar;
                 $existen = false;
+            } else {
+                $existen = true;
+            }
+
+            $this->buscar = $_SESSION["buscar"];
 
                 $consulta = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  pachangas p ON j.id_usuario = p.id_creador 
                 INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
@@ -63,7 +71,6 @@
                 if(!$existen) {
                     echo "<h4>Actualmente no existen pachangas disponibles con los datos introducidos.</h4>";
                 }
-            }
         }
 
         public function apuntado($idj, $idp) {
@@ -80,11 +87,13 @@
         }
 
         public function get_recuento() {
+            $this->buscar = $_SESSION["buscar"];
             $consulta = $this->db->query("SELECT DISTINCT * FROM jugadores j INNER JOIN  pachangas p ON j.id_usuario = p.id_creador 
             INNER JOIN pabellones pab ON p.id_pabellon = pab.id_pabellon 
             WHERE (pab.localidad = '" . $this->buscar . "' OR p.codigo_pachanga = '" . $this->buscar . "') 
             AND activa = 1 
             AND (p.fecha > '" . $this->fecha . "' OR (p.fecha = '" . $this->fecha . "' AND p.hora > '" . $this->hora . "')) 
+            AND ((pab.localidad = '". $this->buscar . "' AND p.codigo_pachanga = '000000') OR (p.codigo_pachanga = '". $this->buscar . "'))
             AND p.id_pachanga NOT IN (SELECT DISTINCT id_pachanga_partido FROM jugadores j INNER JOIN  partidos p ON j.id_usuario = p.id_usuario_partido 
                 WHERE j.id_usuario = '" . $_SESSION["id"] . "')");
 

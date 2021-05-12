@@ -1,6 +1,7 @@
 <?php 
     require_once("../modelo/conectar.php");
     require_once("../modelo/pachangas_modelo.php");
+    require_once("../modelo/buscar_modelo.php");
 
     class Paginacion_modelo {
         private $db;

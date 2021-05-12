@@ -67,8 +67,9 @@
             return $this->nombre_futbol;
         }
 
-        public function actualizar() {            
-            $nombre_imagen = $_FILES['imagen']['name'];
+        public function actualizar() {                
+            $ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+            $nombre_imagen = $this->get_email() . "." . $ext;
             $tipo_imagen = $_FILES['imagen']['type'];
             $tamano_imagen = $_FILES['imagen']['size'];
 

@@ -2,19 +2,20 @@
     <nav class="green accent-2">
         <div class="nav-wrapper ">
             <div class="container row black-text">
-                <div class="col s4">
+                <div class="col s3">
                 <a href="pachangas.php" class="left brand-logo"><img src="../img/logoinicio.png" alt="logotipomarca" class="responsive-img"></a>
                 <a href="#" data-target="menu-responsive" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
                 </div>                
-                <ul class="right hide-on-med-and-down col s8">
+                <ul class="right hide-on-med-and-down col s9">
                     <li><a href="pachangas.php" class="waves-effect waves-light white-text">Pachangas en curso</a></li>
                     <li><a href="buscar.php" class="waves-effect waves-light">Buscar pachangas</a></li>
                     <li><a href="crear.php" class="waves-effect waves-light">Crear pachangas</a></li>
                     <li><a href="historial.php" class="waves-effect waves-light">Historial</a></li>
                     <li><a href="consejos.php" class="waves-effect waves-light">Consejos útiles</a></li>
                     <li><a href="perfil.php" class="waves-effect waves-light">Perfil</a></li>
+                    <li><a href="../controlador/cerrarsesion.php" class="red-text">Salir</a></li>
                 </ul>             
             </div>              
         </div>
@@ -39,5 +40,6 @@
         <li><a href="historial.php" class="waves-effect waves-light">HISTORIAL</a></li>
         <li><a href="consejos.php" class="waves-effect waves-light">CONSEJOS ÚTILES</a></li>
         <li><a href="perfil.php" class="waves-effect waves-light">PERFIL</a></li>
+        <li><a href="../controlador/cerrarsesion.php" class="red-text">SALIR</a></li>
     </div>    
 </ul>

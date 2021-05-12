@@ -9,7 +9,7 @@
         public function __construct() {
             $this->db=Conectar::conexion();
             $this->fecha = date("Y-m-d");
-            $this->hora = date("h:i:s");
+            $this->hora = date("H:i:s");
         }
 
         public function get_historial() {

@@ -7,7 +7,7 @@
             <br><br>
             <nav class="green accent-2 col s12 m12 l6 offset-l3">
                 <div class="nav-wrapper">
-                    <form action="#" method="post">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <div class="input-field">
                         <input id="buscar" name="buscar" type="search" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -25,17 +25,6 @@
 
     <script>
     $(document).ready(function(){
-        $('.buscar').on("click", function(e){
-            e.preventDefault();
-
-            $.ajax({
-                url: "../controlador/buscar_controlador.php",
-                type: "post",
-                success: function(respuesta) {
-		            $("#respuesta").html(respuesta);
-                }
-            });                             
-        });
         $('.alta').on("click", function(e){
             e.preventDefault();
 
