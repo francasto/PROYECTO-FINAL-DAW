@@ -67,14 +67,15 @@
             return $this->nombre_futbol;
         }
 
-        public function actualizar() {                
-            $ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-            $nombre_imagen = $this->get_email() . "." . $ext;
+        public function actualizar() {            
+            $nombre_imagen = $_FILES['imagen']['name'];
             $tipo_imagen = $_FILES['imagen']['type'];
             $tamano_imagen = $_FILES['imagen']['size'];
 
             if($nombre_imagen != "") {
                 if($tamano_imagen <= 524288 && ($tipo_imagen == "image/jpeg" || $tipo_imagen == "image/jpg" || $tipo_imagen == "image/png")) {
+                    $ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+                    $nombre_imagen = $this->get_email() . "." . $ext;
                     $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . "/img/fotos_perfil/";
                     move_uploaded_file($_FILES['imagen']['tmp_name'],$carpeta_destino.$nombre_imagen);
                     $foto = "../img/fotos_perfil/" . $nombre_imagen;
@@ -84,8 +85,7 @@
                 
             } else {
                 $foto = $this->get_foto_perfil();
-            }
-            
+            }            
 
             $nombre = htmlentities(addslashes($_POST["nombre"]));
             $apellido1 = htmlentities(addslashes($_POST["apellido1"]));

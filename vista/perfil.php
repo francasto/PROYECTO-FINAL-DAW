@@ -41,6 +41,7 @@
         </div>
         <div class="row center-align">
             <a href="actualizar_perfil.php" class="btn">Editar perfil</a>
+            <a href="cambiar_contrasena.php" class="btn">Cambiar contraseña</a>
         </div>
     </div>
 
