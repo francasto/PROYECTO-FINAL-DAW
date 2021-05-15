@@ -13,8 +13,8 @@
 
         }
 
-        public function enviar_mail() {
-            mail($this->destino,$this->asunto,$this->texto,$this->cabecera);            
+        public function enviar_mail() {   
+            mail($this->destino,$this->asunto,$this->texto,$this->cabecera);             
         }
     }
 ?>

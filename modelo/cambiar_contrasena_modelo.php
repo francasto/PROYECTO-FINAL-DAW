@@ -21,18 +21,14 @@
             $pw = htmlentities(addslashes($_POST["pw"]));
             $npw = htmlentities(addslashes($_POST["npw"]));
 
-
-            //if($_POST["cambiar"]) {
-                if(password_verify($pw, $this->pass)) {
-                    $npw=password_hash($npw, PASSWORD_DEFAULT);
-                    $sql = "UPDATE jugadores SET password = '" . $npw . "' where id_usuario = " . $idp;
-                    $consulta = $this->db->query($sql);
-                    echo "Contraseña cambiada satisfactoriamente.";
-                } else {
-                    echo "0"; 
-                }
-            //}
-                        
+            if(password_verify($pw, $this->pass)) {
+                $npw=password_hash($npw, PASSWORD_DEFAULT);
+                $sql = "UPDATE jugadores SET password = '" . $npw . "' where id_usuario = " . $idp;
+                $consulta = $this->db->query($sql);
+                echo "Contraseña cambiada satisfactoriamente.";
+            } else {
+                echo "0"; 
+            }                        
         }
     }
 ?>

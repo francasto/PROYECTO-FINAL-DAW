@@ -36,25 +36,20 @@
 </div>
 <script>
     $(document).ready(function(){
-        var pw = "";
-        var npw = "";
-        var npw2 = "";
-        var idp = "";
-
-        $("#npw2").on("keyup", function(){
-            validar();
-        });
 
         $("#cambiar").on("click", function(e){
             e.preventDefault();
             var npw = $("#npw").val();
             var npw2 = $("#npw2").val();
-            if(npw != npw2) {
+            var pw = $("#pw").val();
+            var idp = $("#idp").val();
+            if(npw2 == "" || npw == "" || pw == "") {
+                $("#respuesta").html("<h4 class='red-text center-align'>Todos los campos son obligatorios.</h4>")
                 return false;
-            } else {
-                pw = $("#pw").val();
-                npw = $("#npw").val();
-                idp = $("#idp").val();
+            } else if(npw != npw2) { 
+                $("#respuesta").html("<h4 class='red-text center-align'>La nueva contraseña no coincide.</h4>");
+                return false;
+            } else {               
                 $.ajax({
                     url: "../controlador/cambiar_contrasena_controlador.php",
                     type: "POST",
@@ -70,20 +65,9 @@
                 });
             }   
                   
-        });
-          
+        });          
         
     });
-
-    function validar() {
-        var npw = $("#npw").val();
-        var npw2 = $("#npw2").val();
-        if(npw != npw2) {
-            $("#respuesta").html("<h4 class='red-text center-align'>La nueva contraseña no coincide.</h4>");
-        } else {
-            $("#respuesta").html("");
-        }
-    }
 </script>
 
 <?php include("footer_privado.php"); ?>

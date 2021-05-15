@@ -11,8 +11,10 @@
         $email=new Mail_modelo($_POST["email"],"Bienvenido a Pachangas PRO",$texto);
         $email->enviar_mail();
         $usuario->set_registro();
+        $id = $usuario->get_id($_POST["email"]);
         session_start();
-        $_SESSION["usuario"]=$_POST["email"];
+        $_SESSION["usuario"] = $_POST["email"];
+        $_SESSION["id"] = $id;
         header("location:../vista/pachangas.php");
     } else {
         setcookie("existe", "El usuario ya está registrado.", time() + (60*60*24*90), "/");

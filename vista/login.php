@@ -19,6 +19,7 @@
                         <button class="btn" type="submit">Entrar</button>
                         <div class="row"><br></div>
                         <p>¿No tienes cuenta? <a href="reglog.php">Regístrate aquí.</a></p>
+                        <p>¿Olvidaste tu contraseña? <a href="solicitar_contrasena.php">Clic aquí.</a></p>
                     </div>                    
                 </form>                             
             </div>

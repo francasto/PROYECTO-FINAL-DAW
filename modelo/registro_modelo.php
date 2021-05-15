@@ -31,11 +31,23 @@
             $foto="../img/perfil.jpg";
             $apodo="El pelusa";
             $pw=password_hash($pw, PASSWORD_DEFAULT);
-            $sql="insert into jugadores (nombre, apellido1, apellido2, email, movil, password, foto, apodo) values ('" . $nombre . "','" . $apellido1 . "','" . $apellido2 . "','" . 
-            $correo . "','" . $tel . "','" . $pw . "','" . $foto . "','" . $apodo . "');";
+            $token = md5($correo . time() . rand(1000,9999));
+            $sql="insert into jugadores (nombre, apellido1, apellido2, email, movil, password, foto, apodo, token) values ('" . $nombre . "','" . $apellido1 . "','" . $apellido2 . "','" . 
+            $correo . "','" . $tel . "','" . $pw . "','" . $foto . "','" . $apodo . "','" . $token . "');";
             $consulta=$this->db->query($sql);
 
             return $consulta;
+        }
+
+        public function get_id($correo) {
+            $id_usuario = "";
+
+            $consulta=$this->db->query("select id_usuario from jugadores where email = '" . $correo . "'");
+            while($fila=$consulta->fetch(PDO::FETCH_ASSOC)) {
+                $id_usuario=$fila["id_usuario"];
+            }
+
+            return $id_usuario;
         }
     }
 ?>
