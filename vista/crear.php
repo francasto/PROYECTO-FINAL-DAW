@@ -80,9 +80,9 @@
                     $("#clave").attr("required", false);
                 }
             });
+
             $('#clave').on("blur", function(){
                 $("#privado").val($("#clave").val());
-                console.log($("#privado").val());
             });
 
             var hoy = new Date();

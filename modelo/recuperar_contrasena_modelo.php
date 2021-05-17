@@ -1,6 +1,6 @@
 <?php 
     require_once("../modelo/conectar.php");
-    require_once("../modelo/mail_modelo.php");
+    require_once("../modelo/enviar_correo_modelo.php");
 
     class Recuperar_contrasena_modelo {
         private $db;    
@@ -13,18 +13,8 @@
             if($this->comprobar($correo)) {
                 $token = $this->genera_token($correo);                
                 $link = "http://localhost/vista/recuperar_contrasena.php?c=" . $correo . "&t=" . $token;
-                $asunto = "Reestablecer contraseña de Pachangas PRO";
-                $texto = "<div style='background-color:#e65100; padding:20px; width:1024px; height:400px; text-align:center'>";
-                $texto.= "<img src='ruta_del_logo' alt='Aquí irá el logo cuando lo suba al servidor.'>";
-                $texto.= "<h1>Pachangas PRO</h1>";
-                $texto.= "<h3>Aquí podrás reestablecer tu contraseña.</h3>";
-                $texto.= "<p>Se ha recibido la solicitud de reestablecimiento de contraseña.";
-                $texto.= " Para reestablecer tu contraseña haz clic en el link siguiente: <a href='" . $link . "' style='color:black;'>Reestablecer contraseña.</a> </p>";
-                $texto.= "<p>O copia y pega la URL en tu navegador: " . $link . "</p>";
-                $texto.= "<p>Si no has solicitado el reseteo de tu contraseña, simplemente ignora este mensaje.</p>";
-                $texto.= "</div>";
-                $restablecer = new Mail_modelo($correo,$asunto,$texto);
-                $restablecer->enviar_mail();
+                $restablecer = new Enviar_correo_modelo($correo);
+                $restablecer->password($link);
                 echo "1";
             } else {
                 echo "0";

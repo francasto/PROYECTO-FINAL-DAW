@@ -52,7 +52,7 @@
             $.ajax({
                 url: "../controlador/botones_controlador.php",
                 type: "post",
-                data: {accion: "abandonar",idp: $(this).data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
+                data: {accion: "abandonar",idp: $(this).data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>,correo: <?php echo "'" . $_SESSION["usuario"] . "'";?>},
                 success: function(respuesta) {
                     location.reload(); 
                 }

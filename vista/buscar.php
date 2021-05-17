@@ -31,7 +31,7 @@
             $.ajax({
                 url: "../controlador/apuntarse_controlador.php",
                 type: "post",
-                data: {idp: $(".alta").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>},
+                data: {idp: $(".alta").data("id_pachanga"),usuario: <?php echo $_SESSION["id"];?>,correo: <?php echo "'" . $_SESSION["usuario"] . "'";?>},
                 success: function(respuesta) {
 		            console.log(respuesta)
                     location.href= "pachangas.php";

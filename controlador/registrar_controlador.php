@@ -1,15 +1,15 @@
 <?php
     require_once("../modelo/registro_modelo.php");
-    require_once("../modelo/mail_modelo.php");
+    require_once("../modelo/enviar_correo_modelo.php");
     
 
-    $usuario=new Registro_modelo();
-    $existe=$usuario->get_registrado();
+    $usuario = new Registro_modelo();
+    $existe = $usuario->get_registrado();
 
     if($existe == 0) {
         $texto=include("../vista/correo_bienvenida.php");
-        $email=new Mail_modelo($_POST["email"],"Bienvenido a Pachangas PRO",$texto);
-        $email->enviar_mail();
+        $email=new Enviar_correo_modelo($_POST["email"]);
+        $email->bienvenida();
         $usuario->set_registro();
         $id = $usuario->get_id($_POST["email"]);
         session_start();
