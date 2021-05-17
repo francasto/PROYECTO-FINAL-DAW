@@ -55,7 +55,7 @@
                             </div>                           
                         </div>                      
             
-                        <button class="btn" type="submit">Crear pachanga</button>
+                        <button class="btn" type="submit" id="crear">Crear pachanga</button>
                     </div>
                 </form>
             </div>              
@@ -84,6 +84,10 @@
             $('#clave').on("blur", function(){
                 $("#privado").val($("#clave").val());
             });
+
+            $("#crear").on("click", function() {
+                $("#loading").show();
+            })
 
             var hoy = new Date();
             var dd = hoy.getDate() + 1;

@@ -14,6 +14,13 @@
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous">
-    </script>
+    </script>    
 </head>
+
 <body class="grey lighten-5">
+    <div id="loading" class="center-align">
+        <div class="modal-content center-align orange darken-4">
+            <img src="../img/logo.png" alt="cargando" class="cargando">
+            <h4 class="carga center-align white-text">CARGANDO</h4>
+        </div>
+    </div>

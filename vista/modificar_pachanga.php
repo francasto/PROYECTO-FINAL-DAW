@@ -6,6 +6,10 @@
             <h2>Modificar pachangas</h2>
             <h6>Modifica los datos de tu pachanga.</h6>
             <br><br>
+            <div class="row center-align" id="loading">
+                <img src="../img/logo.png" alt="cargando" class="cargando">
+                <h4 class="carga center-align">CARGANDO</h4>
+            </div>
             <div class="col s12 m12 l6 offset-l3">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="col s12" method="post" accept-charset="UTF-8">
                     <div class="row card-panel">
@@ -95,6 +99,11 @@
             $('#clave').on("blur", function(){
                 $("#privado").val($("#clave").val());
             });
+
+            $('#modificar').on("click", function(){
+                $("#loading").show();                             
+            });
+
 
             var hoy = new Date();
             var dd = hoy.getDate() + 1;
