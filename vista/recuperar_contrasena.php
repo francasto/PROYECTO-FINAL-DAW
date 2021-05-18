@@ -1,16 +1,16 @@
 <?php include("header.php"); 
     if(!isset($_GET["c"]) || !isset($_GET["t"])) {
-        header("Location: ../index_.php");
+        header("Location: ../index.php");
     }
 ?>
 <div class="fondologin">
     <div class="fondoblanco">
-        <div class="section container center"><a href="../index_.php"><img src="../img/logoinicio.png" alt="logo"><img src="../img/nombre.png" alt="nombre"></a></div>
+        <div class="section container center"><a href="../index.php"><img src="../img/logoinicio.png" alt="logo"><img src="../img/nombre.png" alt="nombre"></a></div>
         <div class="section container">
             <div class="row center-align" id="contenido">
                 <h4>Recuperar contraseña</h4>
                 <h5>Introduce tu nueva contraseña</h5>
-                <form action="../controlador/recuperar_contrasena_controlador.php" class="col s6 offset-s3" method="post">
+                <form action="../controlador/recuperar_contrasena_controlador.php" class="col s12 l6 offset-l3" method="post">
                     <div class="row card-panel">
                         <div class="input-field col s12">
                             <input type="password" id="pw" name="pw" class="validate" required>

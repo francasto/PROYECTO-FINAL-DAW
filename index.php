@@ -171,7 +171,7 @@
     <div class="translucido">
         <div class="row container">
             <div class="section center">
-                <img src="img/logo.png" alt="logotipo">
+                <img class="responsive-img" src="img/logo.png" alt="logotipo">
             </div> 
         </div>
         <div class="row fondogris">

@@ -9,7 +9,7 @@
     <div class="row">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" accept-charset="UTF-8" id="cambiopw">
             <input type="hidden" id="idp" name="idp" value=<?php echo $_SESSION["id"]; ?>>
-            <table class="col s6 centered offset-s3 fondogris white-text">
+            <table class="col s12 l6 centered offset-l3 fondogris white-text">
                 <tr>
                     <th>Contraseña anterior:</th>
                     <td><input type="password" name="pw" id="pw" class="validate white-text center-align" value="" required></td>

@@ -8,7 +8,7 @@
             <br><br>                       
         </div>
         <div class="row">
-            <table class="col s6 centered offset-s3 fondogris white-text">
+            <table class="col s12 l6 centered offset-l3 fondogris white-text">
                 <tr>
                     <th>Foto de perfil:</th>
                     <td><img src="<?php echo $perfil->get_foto_perfil(); ?>" alt="foto de perfil" class="responsive-img col s4 offset-s4 circle"></td>                    

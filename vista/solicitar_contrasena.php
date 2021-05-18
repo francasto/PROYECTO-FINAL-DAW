@@ -1,12 +1,12 @@
 <?php include("header.php"); ?>
 <div class="fondologin">
     <div class="fondoblanco">
-        <div class="section container center"><a href="../index_.php"><img src="../img/logoinicio.png" alt="logo"><img src="../img/nombre.png" alt="nombre"></a></div>
+        <div class="section container center"><a href="../index.php"><img src="../img/logoinicio.png" alt="logo"><img src="../img/nombre.png" alt="nombre"></a></div>
         <div class="section container">
             <div class="row center-align" id="contenido">
                 <h4>Recuperar contraseña</h4>
                 <h5>Introduce tu correo para recuperar tu contraseña</h5>
-                <form action="../controlador/recuperar_contrasena_controlador.php" class="col s6 offset-s3" method="post">
+                <form action="../controlador/recuperar_contrasena_controlador.php" class="col s12 l6 offset-l3" method="post">
                     <div class="row card-panel">
                         <div class="input-field col s12">
                             <input type="email" id="correo" name="correo" class="validate" required>
@@ -41,7 +41,7 @@
                         $("#respuesta").html("<h4 class='red-text center-align'>El correo introducido no existe en la base de datos.</h4>")
                     } else {
                         $("#contenido").hide();
-                        $("#respuesta").html("<h1 class='green-text center-align'>El correo se ha enviado con éxito.</h1><br><a href='../index_.php' class='btn'>Volver</a>");
+                        $("#respuesta").html("<h1 class='green-text center-align'>El correo se ha enviado con éxito.</h1><br><a href='../index.php' class='btn'>Volver</a>");
                     };
                 }
             });
