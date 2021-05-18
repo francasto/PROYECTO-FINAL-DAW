@@ -6,7 +6,7 @@
             <h6>Rellena el formulario y crea tu propia pachanga.</h6>
             <br><br>
             <div class="col s12 m12 l6 offset-l3">
-                <form action="../controlador/crear_controlador.php" class="col s12" method="post" accept-charset="UTF-8">
+                <form action="../controlador/crear_controlador.php" class="col s12" method="post" accept-charset="UTF-8" id="formulario">
                     <div class="row card-panel">
                         <div class="input-field col s10">
                         <select id="pabellon" name="pabellon" class="validate" required>
@@ -84,10 +84,10 @@
             $('#clave').on("blur", function(){
                 $("#privado").val($("#clave").val());
             });
-
-            $("#crear").on("click", function() {
+            
+            $("#formulario").on("submit", function() {
                 $("#loading").show();
-            })
+            });
 
             var hoy = new Date();
             var dd = hoy.getDate() + 1;

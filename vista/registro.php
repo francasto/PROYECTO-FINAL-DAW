@@ -33,7 +33,7 @@
                             <label for="pw">Password:</label>
                         </div>                      
             
-                        <button class="btn" type="submit">Registrar</button>
+                        <button class="btn" type="submit" id="registrar">Registrar</button>
                     </div>
                 </form>
             </div>
@@ -43,5 +43,11 @@
         </div>
     </div>    
 </div>
+
+<script>
+    $("form").on("submit", function() {
+        $("#loading").show();
+    });
+</script>
 
 <?php include("footer.php"); ?>

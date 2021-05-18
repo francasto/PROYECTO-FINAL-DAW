@@ -100,7 +100,7 @@
                 $("#privado").val($("#clave").val());
             });
 
-            $('#modificar').on("click", function(){
+            $('form').on("submit", function(){
                 $("#loading").show();                             
             });
 
