@@ -9,6 +9,6 @@
     include("navbarprivada.php"); 
 ?>
     <div class='fondoprivado'>
-        <div class='fondoblanco'>"
+        <div class='fondoblanco'>
 
 

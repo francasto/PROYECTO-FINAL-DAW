@@ -19,8 +19,8 @@
 
 <body class="grey lighten-5">
     <div id="loading" class="center-align">
-        <div class="modal-content center-align orange darken-4">
-            <img src="../img/logo.png" alt="cargando" class="cargando responsive-img">
+        <div class="modal-content center-align orange darken-4 col s12">
+            <img src="../img/logo.png" alt="cargando" class="cargando responsive-img col s12">
             <h4 class="carga center-align white-text">CARGANDO</h4>
         </div>
     </div>

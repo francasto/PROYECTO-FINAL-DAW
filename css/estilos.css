@@ -76,6 +76,17 @@ p {
     z-index: 1;
 }
 
+@media screen and (max-width: 600px) {
+    .cargando {
+      left: 0%;
+    }
+
+    .carga {
+        top: 50%;
+        left: 30%;
+    }
+}
+
 @keyframes cargar {
     0% {
         opacity: 0;

@@ -13,7 +13,8 @@
             $this->destino=$correo;
             $this->asunto="";
             $this->contenido="<div style='background-color:#e65100; padding:20px; width:1024px; height:400px; text-align:center'>";
-            $this->contenido.="<img src='ruta_del_logo' alt='Aquí irá el logo cuando lo suba al servidor.'>";
+            $this->contenido.="<img src='http://pachangaspro.c1.biz/img/gente.jpg' alt='logo'>";
+            $this->contenido.="<img src='http://www.pasionporvolar.com/wp-content/uploads/2017/12/adf-ndb-peq.jpg' alt='logo'>";
             $this->cabecera = "MIME-Version: 1.0\r\nContent-type: text/html; charset=UTF-8\r\n"; 
         }
     
